@@ -16,6 +16,9 @@ public class Seleccion {
     }
     
     public String[][] construir(String[][] matriz){
+       for(int i = 0; i < matriz.length; i++){
+           
+       } 
       return null;
     }
 }
