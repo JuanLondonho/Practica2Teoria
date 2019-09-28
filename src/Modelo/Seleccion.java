@@ -13,10 +13,10 @@ import java.util.Arrays;
  * @author juanclg
  */
 public class Seleccion {
-    ArrayList<String> nAnulables = new ArrayList<>();
-    ArrayList<String> pAnulables = new ArrayList<>();
-    ArrayList<ArrayList<String>> pPrimeros = new ArrayList<>();
-    ArrayList<ArrayList<String>> nPrimeros = new ArrayList<>();
+    ArrayList<String> nAnulables;
+    ArrayList<String> pAnulables;
+    ArrayList<ArrayList<String>> pPrimeros;
+    ArrayList<ArrayList<String>> nPrimeros;
     
     
     public Seleccion(){
@@ -24,6 +24,10 @@ public class Seleccion {
     }
     
     public void construir(String[][] matriz){
+       nAnulables = new ArrayList<>();
+       pAnulables = new ArrayList<>();
+       pPrimeros = new ArrayList<>();
+       nPrimeros = new ArrayList<>();
        nAnulables(matriz);
        primeros(matriz);
        for(int i=0 ; i<nAnulables.size(); i++){
@@ -180,9 +184,54 @@ public class Seleccion {
                 }
             } 
         }
+        for(int i=0; i < nPrimeros.size(); i++){
+            for(int j = 1; j < nPrimeros.get(i).size(); j++){
+                String noTerminal = nPrimeros.get(i).get(j);
+                if(noTerminal.charAt(0) == '<'){
+                    int indice = -1;
+                    for(int k = 0; k < nPrimeros.size(); k++){
+                        if(nPrimeros.get(k).get(0).equals(noTerminal)){
+                            indice = k;
+                            break;
+                        }
+                    }
+                    for(int k=1; k<nPrimeros.get(k).size(); k++){
+                        String valor = nPrimeros.get(indice).get(k);
+                        if(!nPrimeros.get(i).contains(valor)){
+                            nPrimeros.get(i).add(valor);
+;                        }
+                    }
+                }
+            }
+            for(int j = nPrimeros.get(i).size()-1; j > 0; j--){
+                String noTerminal = nPrimeros.get(i).get(j);
+                if(noTerminal.charAt(0) == '<'){
+                    nPrimeros.get(i).remove(j);
+                }
+            }
+        }
+        
+        for(int i = 0; i < pPrimeros.size(); i++){
+            for(int j = pPrimeros.get(i).size()-1; j > 0; j--){
+                 String noTerminal = pPrimeros.get(i).get(j);
+                 if(noTerminal.charAt(0) == '<'){
+                    int indice = -1;
+                    for(int k = 0; k < nPrimeros.size(); k++){
+                        if(nPrimeros.get(k).get(0).equals(noTerminal)){
+                            indice = k;
+                            break;
+                        }
+                    }
+                    for(int k=1; k < nPrimeros.get(indice).size(); k++){
+                        String valor = nPrimeros.get(indice).get(k);
+                        if(!pPrimeros.get(i).contains(valor)){
+                            pPrimeros.get(i).add(valor);
+                        }
+                    }
+                    pPrimeros.get(i).remove(j);
+                 }
+            }
+        }
         System.out.println("");
     }
-    
-    
-    
 }
