@@ -162,7 +162,6 @@ public class GramaticaIn extends javax.swing.JFrame {
         // TODO add your handling code here:
             gra= ctr.matrizGramatica(tblMatriz);//se llama el metodo para crear la matriz con los datos ingresados en el jtable y se realizan las operaciones que hay dentro de el
             jScrollPane.setViewportView(tblMatriz);
-            btnIngreso.setVisible(false);
             
         
     }//GEN-LAST:event_btnIngresoActionPerformed

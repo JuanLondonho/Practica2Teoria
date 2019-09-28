@@ -6,6 +6,7 @@
 package Controlador;
 
 import javax.swing.JTable;
+import Modelo.*;
 
 /**
  *
@@ -16,6 +17,7 @@ public class ctrGramatica {
     int numProducciones;
     String[][] gramatica;
     JTable tblGramatica;
+    Seleccion s = new Seleccion();
  
 //    public String[][] gramatica;
 //    
@@ -58,6 +60,8 @@ public class ctrGramatica {
                 gramatica[i][j] = (String) gramaticaV.getValueAt(i, j);//Llenar la matriz con los datos ingresados en el jTable
             }
         }
+        
+        s.construir(gramatica);
         
         return gramatica;
     }
