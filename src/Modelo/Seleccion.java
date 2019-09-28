@@ -17,6 +17,7 @@ public class Seleccion {
     ArrayList<String> pAnulables;
     ArrayList<ArrayList<String>> pPrimeros;
     ArrayList<ArrayList<String>> nPrimeros;
+    ArrayList<ArrayList<String>> nSiguientes;
     
     
     public Seleccion(){
@@ -28,8 +29,10 @@ public class Seleccion {
        pAnulables = new ArrayList<>();
        pPrimeros = new ArrayList<>();
        nPrimeros = new ArrayList<>();
+       nSiguientes = new ArrayList<>();
        nAnulables(matriz);
        primeros(matriz);
+       siguientes(matriz);
        for(int i=0 ; i<nAnulables.size(); i++){
            System.out.println(nAnulables.get(i));
        }
@@ -96,12 +99,12 @@ public class Seleccion {
                                 }
                             }
                             if(anulable){
-                                if(nAnulables.contains(matriz[i][0])){
+                                if(!pAnulables.contains(""+i)){
                                     pAnulables.add(""+i);
-                                    break;
-                                }else{
+                                }
+                                
+                                if(!nAnulables.contains(matriz[i][0])){
                                     nAnulables.add(matriz[i][0]);
-                                    pAnulables.add(""+i);
                                     i=-1;
                                 }
                             }
@@ -195,7 +198,7 @@ public class Seleccion {
                             break;
                         }
                     }
-                    for(int k=1; k<nPrimeros.get(k).size(); k++){
+                    for(int k=1; k<nPrimeros.get(indice).size(); k++){
                         String valor = nPrimeros.get(indice).get(k);
                         if(!nPrimeros.get(i).contains(valor)){
                             nPrimeros.get(i).add(valor);
@@ -232,6 +235,146 @@ public class Seleccion {
                  }
             }
         }
+    }
+    
+    public void siguientes(String[][] matriz){
+        for(int i = 0; i < nPrimeros.size(); i++){
+            nSiguientes.add(new ArrayList<>(Arrays.asList(new String[] {nPrimeros.get(i).get(0)})));
+            if(i==0){
+                nSiguientes.get(i).add("/");
+            }
+        }
+        for(int i = 0; i < nSiguientes.size(); i++){
+            for(int j = 0; j < matriz.length; j++){
+                String ladoDerecho = matriz[j][1];
+                if(ladoDerecho.contains(nSiguientes.get(i).get(0))){
+                    boolean terminar = false;
+                    for(int k = 0; k < ladoDerecho.length(); k++){
+                        String posible = "";
+                        switch(ladoDerecho.charAt(k)){
+                            case '<':
+                                posible = posible.concat("<");
+                                for(int l = k+1; l < ladoDerecho.length(); l++){
+                                    switch(ladoDerecho.charAt(l)){
+                                        case '>':
+                                            posible = posible.concat(">");
+                                            if(posible.equals(nSiguientes.get(i).get(0))){
+                                                if(l+1 == ladoDerecho.length()){
+                                                    if(!nSiguientes.get(i).contains(matriz[j][0])){
+                                                        nSiguientes.get(i).add(matriz[j][0]);
+                                                    }
+                                                }else{
+                                                    for(int m=l+1; m < ladoDerecho.length(); m++){
+                                                        boolean primeros = false;
+                                                        boolean terminal = false;
+                                                        String primerosDe = "";
+                                                        switch(ladoDerecho.charAt(m)){
+                                                            case '<':
+                                                                primerosDe = primerosDe.concat("<");
+                                                                for(int n = m+1; n < ladoDerecho.length(); n++){
+                                                                    switch(ladoDerecho.charAt(n)){
+                                                                        case '>':
+                                                                            primerosDe = primerosDe.concat(">");
+                                                                            for(int p=0; p < nPrimeros.size(); p++){
+                                                                                if(nPrimeros.get(p).get(0).equals(primerosDe)){
+                                                                                    for(int t = 1; t < nPrimeros.get(p).size(); t++){
+                                                                                        if(!nSiguientes.get(i).contains(nPrimeros.get(p).get(t))){
+                                                                                            nSiguientes.get(i).add(nPrimeros.get(p).get(t));
+                                                                                        }
+                                                                                    }
+                                                                                    break;
+                                                                                }
+                                                                            }
+                                                                            m = n;
+                                                                            primeros = true;
+                                                                            break;
+                                                                        default:
+                                                                            primerosDe = primerosDe.concat(""+ladoDerecho.charAt(n));
+                                                                            break;
+                                                                    }
+                                                                    if(primeros){
+                                                                        primeros = false;
+                                                                        System.out.println(primerosDe);
+                                                                        if(!nAnulables.contains(primerosDe)){
+                                                                            terminal = true;
+                                                                        }else{
+                                                                            if(n+1 == ladoDerecho.length()){
+                                                                                if(!nSiguientes.get(i).contains(matriz[j][0])){
+                                                                                    nSiguientes.get(i).add(matriz[j][0]);
+                                                                                }
+                                                                                terminal = true;
+                                                                            }
+                                                                        }
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                break;
+                                                                
+                                                            default:
+                                                                terminal = true;
+                                                                if(!nSiguientes.get(i).contains(""+ladoDerecho.charAt(m))){
+                                                                    nSiguientes.get(i).add(""+ladoDerecho.charAt(m));
+                                                                }
+                                                                break;
+                                                                   
+                                                        }
+                                                        if(terminal){
+                                                            terminal = false;
+                                                            break;
+                                                        }
+                                                    }
+                                                } 
+                                            }
+                                            terminar = true;
+                                            k = l;
+                                            break;
+                                            
+                                        default:
+                                            posible = posible.concat(""+ladoDerecho.charAt(l));
+                                            break;
+                                    }
+                                    if(terminar){
+                                        terminar = false;
+                                        break;
+                                    }
+                                }
+                                break;
+                            default: 
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        for(int i=0; i < nSiguientes.size(); i++){
+            for(int j = 1; j < nSiguientes.get(i).size(); j++){
+                String noTerminal = nSiguientes.get(i).get(j);
+                if(noTerminal.charAt(0) == '<'){
+                    int indice = -1;
+                    for(int k = 0; k < nSiguientes.size(); k++){
+                        if(nSiguientes.get(k).get(0).equals(noTerminal)){
+                            indice = k;
+                            break;
+                        }
+                    }
+                    for(int k=1; k< nSiguientes.get(indice).size(); k++){
+                        String valor = nSiguientes.get(indice).get(k);
+                        if(!nSiguientes.get(i).contains(valor)){
+                            nSiguientes.get(i).add(valor);
+;                        }
+                    }
+                }
+            }
+            for(int j = nSiguientes.get(i).size()-1; j > 0; j--){
+                String noTerminal = nSiguientes.get(i).get(j);
+                if(noTerminal.charAt(0) == '<'){
+                    nSiguientes.get(i).remove(j);
+                }
+            }
+        }
+        
+        
         System.out.println("");
     }
 }
