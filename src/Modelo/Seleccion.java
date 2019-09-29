@@ -18,27 +18,33 @@ public class Seleccion {
     ArrayList<ArrayList<String>> pPrimeros;
     ArrayList<ArrayList<String>> nPrimeros;
     ArrayList<ArrayList<String>> nSiguientes;
+    ArrayList<ArrayList<String>> seleccion;
+    ArrayList<ArrayList<String>> conjuntos;
+    
 
 
     public Seleccion(){
 
     }
 
-    public void construir(String[][] matriz){
+    public ArrayList construir(String[][] matriz){
        nAnulables = new ArrayList<>();
        pAnulables = new ArrayList<>();
        pPrimeros = new ArrayList<>();
        nPrimeros = new ArrayList<>();
        nSiguientes = new ArrayList<>();
+       seleccion = new ArrayList<>();
+       conjuntos = new ArrayList<>();
        nAnulables(matriz);
        primeros(matriz);
        siguientes(matriz);
-       for(int i=0 ; i<nAnulables.size(); i++){
-           System.out.println(nAnulables.get(i));
-       }
+       seleccion(matriz);
+       conjuntos(matriz);
+       esDisyunto();
+       return seleccion;
     }
 
-    public void nAnulables(String[][] matriz){
+    private void nAnulables(String[][] matriz){
         for(int i=0; i < matriz.length; i++){
             switch (matriz[i][1].charAt(0)) {
                 case '*':
@@ -118,7 +124,7 @@ public class Seleccion {
         }
     }
 
-    public void primeros(String[][] matriz){
+    private void primeros(String[][] matriz){
         for(int i=0; i<matriz.length; i++){
             pPrimeros.add(new ArrayList<>(Arrays.asList(new String[] {""+i})));
             String noTerminal = matriz[i][0];
@@ -175,9 +181,18 @@ public class Seleccion {
                        if(!nPrimeros.get(indice).contains(""+ladoDerecho.charAt(j))){
                             nPrimeros.get(indice).add(""+ladoDerecho.charAt(j));
                        }
-                       if(!pPrimeros.get(i).contains(""+ladoDerecho.charAt(j))){
+                       if(pPrimeros.get(i).get(0).equals(""+ladoDerecho.charAt(j))){
+                            ArrayList a = (ArrayList)pPrimeros.get(i).clone();
+                            a.remove(0);
+                            if(!a.contains(""+ladoDerecho.charAt(j))){
+                                pPrimeros.get(i).add(""+ladoDerecho.charAt(j));
+                            } 
+                       }else{
+                          if(!pPrimeros.get(i).contains(""+ladoDerecho.charAt(j))){
                             pPrimeros.get(i).add(""+ladoDerecho.charAt(j));
-                         }
+                         } 
+                       }
+                       
                        terminal = true;
                        break;
                 }
@@ -227,9 +242,18 @@ public class Seleccion {
                     }
                     for(int k=1; k < nPrimeros.get(indice).size(); k++){
                         String valor = nPrimeros.get(indice).get(k);
-                        if(!pPrimeros.get(i).contains(valor)){
-                            pPrimeros.get(i).add(valor);
-                        }
+                        if(pPrimeros.get(i).get(0).equals(valor)){
+                            ArrayList a = (ArrayList)pPrimeros.get(i).clone();
+                            a.remove(0);
+                            if(!a.contains(valor)){
+                                pPrimeros.get(i).add(valor);
+                            } 
+                       }else{
+                            if(!pPrimeros.get(i).contains(valor)){
+                                pPrimeros.get(i).add(valor);
+                            }
+                       }
+                        
                     }
                     pPrimeros.get(i).remove(j);
                  }
@@ -237,7 +261,7 @@ public class Seleccion {
         }
     }
 
-    public void siguientes(String[][] matriz){
+    private void siguientes(String[][] matriz){
         for(int i = 0; i < nPrimeros.size(); i++){
             nSiguientes.add(new ArrayList<>(Arrays.asList(new String[] {nPrimeros.get(i).get(0)})));
             if(i==0){
@@ -376,5 +400,79 @@ public class Seleccion {
 
 
         System.out.println("");
+    }
+    
+    private void seleccion(String [][] matriz){
+        for(int i = 0; i < pPrimeros.size(); i++){
+            seleccion.add(new ArrayList<>(Arrays.asList(new String[] {pPrimeros.get(i).get(0)})));
+        }
+        for(int i = 0; i < seleccion.size(); i++){
+            for(int j=1; j<pPrimeros.get(i).size(); j++){
+                if(seleccion.get(i).get(0).equals(pPrimeros.get(i).get(j))){
+                    ArrayList a = (ArrayList)seleccion.get(i).clone();
+                    a.remove(0);
+                    if(!a.contains(pPrimeros.get(i).get(j))){
+                        seleccion.get(i).add(pPrimeros.get(i).get(j));
+                    }
+                }
+                else {
+                    if(!seleccion.get(i).contains(pPrimeros.get(i).get(j))){
+                        seleccion.get(i).add(pPrimeros.get(i).get(j));
+                    }
+                }
+            }
+            if(pAnulables.contains(""+i)){
+                String siguientes = matriz[i][0];
+                for(int j = 0; j < nSiguientes.size(); j++){
+                    if(nSiguientes.get(j).get(0).equals(siguientes)){
+                        for(int k = 1; k < nSiguientes.get(j).size(); k++){
+                            if(seleccion.get(i).get(0).equals(nSiguientes.get(j).get(k))){
+                                ArrayList a = (ArrayList)seleccion.get(i).clone();
+                                a.remove(0);
+                                if(!a.contains(nSiguientes.get(j).get(k))){
+                                    seleccion.get(i).add(nSiguientes.get(j).get(k));
+                                } 
+                            }else{
+                                 if(!seleccion.get(i).contains(nSiguientes.get(j).get(k))){
+                                     seleccion.get(i).add(nSiguientes.get(j).get(k));
+                                 }
+                            }
+                            
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    public boolean esDisyunto(){
+        for(int i =0; i < conjuntos.size(); i++){
+            for(int j = 1; j < conjuntos.get(i).size() - 1; j++){
+                for(int k = 1; k < seleccion.get(j).size(); k++){
+                    String value = seleccion.get(Integer.parseInt(conjuntos.get(i).get(j))).get(k);
+                    for(int p = j+1; p < conjuntos.get(i).size(); p++){
+                        ArrayList a = (ArrayList)seleccion.get(Integer.parseInt(conjuntos.get(i).get(p))).clone();
+                        a.remove(0);
+                        if(a.contains(value)){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
+    
+    private void conjuntos(String [][] matriz){
+        for(int i= 0; i < nPrimeros.size(); i++){
+            conjuntos.add(new ArrayList<>(Arrays.asList(new String[] {nPrimeros.get(i).get(0)})));
+            for(int j = 0; j < matriz.length; j++){
+                if(matriz[j][0].equals(nPrimeros.get(i).get(0))){
+                    conjuntos.get(i).add(""+j);
+                }
+            }
+        }
     }
 }

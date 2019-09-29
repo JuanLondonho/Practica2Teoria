@@ -64,10 +64,10 @@ public class ctrArchivo {
             g = new String[cont][2];
             
 
-            while (((linea = br.readLine()) != null) && i < 3) {
-
-                g[i][0] = linea.substring(0, 3);
-                g[i][1] = linea.substring(3, linea.length());
+            while (((linea = br.readLine()) != null) && i < cont) {
+                int indice = linea.indexOf(">") +1;
+                g[i][0] = linea.substring(0, indice);
+                g[i][1] = linea.substring(indice, linea.length());
 
                 i++;
 

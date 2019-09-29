@@ -42,7 +42,7 @@ public class ctrGramatica {
         return ctr;
     }
 
-     public void entradasTabla(int x,String [][] grama) {
+     public void entradasTabla(int x, String [][] grama) {
         numProducciones= x;
         gramatica = new String[x][2];
         gramatica=grama;
