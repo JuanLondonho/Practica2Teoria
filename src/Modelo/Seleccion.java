@@ -43,6 +43,7 @@ public class Seleccion {
        esDisyunto();
        return seleccion;
     }
+    
 
     private void nAnulables(String[][] matriz){
         for(int i=0; i < matriz.length; i++){

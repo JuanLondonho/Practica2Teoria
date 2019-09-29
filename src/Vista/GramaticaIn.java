@@ -170,7 +170,7 @@ public class GramaticaIn extends javax.swing.JFrame {
             }else
                 System.out.println("HOLA MUNDIS");
                 
-            
+            ctr.matrizGramatica();
 
     }//GEN-LAST:event_btnIngresoMActionPerformed
 

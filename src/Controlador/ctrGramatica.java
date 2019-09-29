@@ -19,6 +19,7 @@ public class ctrGramatica {
     JTable tblGramatica;
     Seleccion s = new Seleccion();
     ctrArchivo ctrA=new ctrArchivo();
+    tipoGramatica t = new tipoGramatica();
 
 //    public String[][] gramatica;
 //
@@ -42,7 +43,7 @@ public class ctrGramatica {
         return ctr;
     }
 
-     public void entradasTabla(int x, String [][] grama) {
+     public void entradasTablaF(int x, String [][] grama) {
         numProducciones= x;
         gramatica = new String[x][2];
         gramatica=grama;
@@ -101,6 +102,7 @@ public class ctrGramatica {
 
     public void matrizGramatica() {
         s.construir(gramatica);
+        t.tipo(gramatica);
     }
 
 }
