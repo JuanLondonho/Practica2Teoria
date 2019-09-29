@@ -16,6 +16,7 @@ public class ctrGramatica {
     int numProducciones;
     String[][] gramatica;
     JTable tblGramatica;
+    ctrArchivo ctrA=new ctrArchivo();
  
 //    public String[][] gramatica;
 //    
@@ -39,28 +40,36 @@ public class ctrGramatica {
         return ctr;
     }
     
-     public void entradasTabla(int x) {
+     public void entradasTabla(int x,String [][] grama) {
         numProducciones= x;
-        gramatica = new String[numProducciones][2];
+        gramatica = new String[x][2];
+        gramatica=grama;
     }
     
      public JTable crearTabla() {
 
         tblGramatica = new JTable(numProducciones, 2);//se crea una instacia de la clase JTable
         tblGramatica.getTableHeader().setVisible(false);
+        
+        for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
+            for (int j = 0; j < 2; j++) {
+                
+                tblGramatica.setValueAt(gramatica[i][j], i, j);
+                
+            }
+        }
 
         return tblGramatica;
     }
      
-     public String [][] matrizGramatica(JTable gramaticaV){
-        for (int i = 0; i <numProducciones; i++) {//Recorre el JTable inicial
-           for (int j = 0; j < 2; j++) {
-                gramatica[i][j] = (String) gramaticaV.getValueAt(i, j);//Llenar la matriz con los datos ingresados en el jTable
-            }
-        }
-        
-        return gramatica;
-    }
-     
-     
+//    public String[][] matrizGramatica(JTable gramaticaV) {
+//        for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
+//            for (int j = 0; j < 2; j++) {
+//                gramatica[i][j] = (String) gramaticaV.getValueAt(i, j);//Llenar la matriz con los datos ingresados en el jTable
+//            }
+//        }
+//
+//        return gramatica;
+//    }
+
 }

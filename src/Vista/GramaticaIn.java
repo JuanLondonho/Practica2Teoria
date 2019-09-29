@@ -28,7 +28,6 @@ public class GramaticaIn extends javax.swing.JFrame {
        //Se inicializan los componentes y se le aplican las propiedades necesarias.
        initComponents();
        tblMatriz= ctr.crearTabla();//se crea el jtable en el cual el usario ingresa los datos del automata
-       gra=new String[tblMatriz.getRowCount()][2];
        jScrollPane.setViewportView(tblMatriz);
        tblMatriz.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
        tblMatriz.getTableHeader().setPreferredSize(new java.awt.Dimension(0,0));
@@ -160,11 +159,8 @@ public class GramaticaIn extends javax.swing.JFrame {
 
     private void btnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoActionPerformed
         // TODO add your handling code here:
-            gra= ctr.matrizGramatica(tblMatriz);//se llama el metodo para crear la matriz con los datos ingresados en el jtable y se realizan las operaciones que hay dentro de el
             jScrollPane.setViewportView(tblMatriz);
-            btnIngreso.setVisible(false);
-            
-        
+    
     }//GEN-LAST:event_btnIngresoActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
