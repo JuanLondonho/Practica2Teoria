@@ -7,38 +7,33 @@ package Vista;
 
 import Controlador.ctrArchivo;
 import Controlador.ctrGramatica;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author carolina
  */
-public class GramaticaF extends javax.swing.JFrame {
+public class GramaticaMf extends javax.swing.JFrame {
     
     ctrArchivo ctrA= new ctrArchivo();
     ctrGramatica ctr= ctrGramatica.getCtr();
     String path;
     String[][] gra;
-    
+    //GramaticaIn gramatica = new GramaticaIn();
 
     /**
-     * Creates new form GramaticaF
+     * Creates new form GramaticaMf
      */
-    public GramaticaF() {
+    public GramaticaMf() {
         initComponents();
         fileName.setVisible(false);
         btnExaminar.setVisible(false);
         btnIngresoM.setVisible(false);
         btnIngresoF.setVisible(false);
         labelP.setVisible(false);
-        
-        
     }
 
     /**
@@ -50,11 +45,10 @@ public class GramaticaF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnExaminar = new javax.swing.JButton();
         btnIngresoF = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         FileName = new javax.swing.JLabel();
         btnIngresoM = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -63,7 +57,6 @@ public class GramaticaF extends javax.swing.JFrame {
         labelP = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         btnExaminar.setText("Examinar");
         btnExaminar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,8 +64,6 @@ public class GramaticaF extends javax.swing.JFrame {
                 btnExaminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExaminar);
-        btnExaminar.setBounds(370, 80, 76, 23);
 
         btnIngresoF.setText("Ingresar");
         btnIngresoF.addActionListener(new java.awt.event.ActionListener() {
@@ -80,17 +71,9 @@ public class GramaticaF extends javax.swing.JFrame {
                 btnIngresoFActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIngresoF);
-        btnIngresoF.setBounds(450, 80, 85, 24);
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel3.setText("GRAMATICA");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(220, 20, 109, 21);
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(633, 75, 0, 0);
-        getContentPane().add(FileName);
-        FileName.setBounds(503, 45, 130, 15);
 
         btnIngresoM.setText("Ingresar");
         btnIngresoM.addActionListener(new java.awt.event.ActionListener() {
@@ -98,58 +81,108 @@ public class GramaticaF extends javax.swing.JFrame {
                 btnIngresoMActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIngresoM);
-        btnIngresoM.setBounds(230, 110, 76, 24);
 
-        buttonGroup3.add(jRadioButton1);
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Ingreso por archivo de texto");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButton1);
-        jRadioButton1.setBounds(12, 45, 235, 24);
 
-        buttonGroup3.add(jRadioButton2);
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Ingresar Manualmente");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jRadioButton2);
-        jRadioButton2.setBounds(308, 45, 183, 24);
 
         fileName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileNameActionPerformed(evt);
             }
         });
-        getContentPane().add(fileName);
-        fileName.setBounds(216, 76, 150, 27);
 
         labelP.setText("Número de producciones:");
-        getContentPane().add(labelP);
-        labelP.setBounds(20, 80, 180, 17);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioButton2)
+                .addGap(79, 79, 79))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(labelP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fileName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExaminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnIngresoF, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(269, 269, 269)
+                        .addComponent(btnIngresoM, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(71, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FileName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 365, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelP)
+                    .addComponent(fileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresoF, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIngresoM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 89, Short.MAX_VALUE)
+                    .addComponent(FileName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 47, Short.MAX_VALUE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExaminarActionPerformed
-        JFileChooser fileChooser=new JFileChooser();
+        
+         JFileChooser fileChooser=new JFileChooser();
         int opt=fileChooser.showOpenDialog(this);
         if(opt==JFileChooser.APPROVE_OPTION){
             fileName.setText(fileChooser.getSelectedFile().getName());
             path=fileChooser.getSelectedFile().getPath();
 
         }
+
         
-        
+
     }//GEN-LAST:event_btnExaminarActionPerformed
 
     private void btnIngresoFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoFActionPerformed
-        
         try {
             // TODO add your handling code here:
             int x=ctrA.tamañoArchivo(path);
@@ -159,26 +192,35 @@ public class GramaticaF extends javax.swing.JFrame {
             if(!fileName.getText().equals("")){
             this.setVisible(false);
            
-           // ctr.entradasTabla(x,gra);
+            ctr.entradasTablaF(x,gra);
             GramaticaIn gramatica = new GramaticaIn();
             gramatica.setVisible(true);
         }
         } catch (IOException ex) {
             Logger.getLogger(GramaticaF.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    
+
     }//GEN-LAST:event_btnIngresoFActionPerformed
 
     private void btnIngresoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoMActionPerformed
         // TODO add your handling code here:
+        if(!fileName.getText().equals("")){
+            this.setVisible(false);
+            int x=Integer.parseInt(fileName.getText());
+            ctr.entradasTablaM(x);
+            GramaticaIn gramatica = new GramaticaIn();
+            gramatica.setVisible(true);
+            //tblMatriz= ctr.tableGramatica();
+            
+        }
+        
+        
     }//GEN-LAST:event_btnIngresoMActionPerformed
 
-    private void fileNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fileNameActionPerformed
-
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
+            
         if(jRadioButton1.isSelected()){
         btnIngresoM.setVisible(false);
         labelP.setVisible(false);
@@ -187,12 +229,28 @@ public class GramaticaF extends javax.swing.JFrame {
         btnIngresoF.setVisible(true);
        
        }
+       
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
+        //gramatica.manual=jRadioButton2.isSelected();
+         if(jRadioButton2.isSelected()){
+        btnIngresoM.setVisible(true);
+        labelP.setVisible(true);
+        fileName.setVisible(true);
+        btnExaminar.setVisible(false);
+        btnIngresoF.setVisible(false);
         
+       
+       }
+        
+
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void fileNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fileNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,20 +269,20 @@ public class GramaticaF extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GramaticaF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GramaticaMf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GramaticaF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GramaticaMf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GramaticaF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GramaticaMf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GramaticaF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GramaticaMf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GramaticaF().setVisible(true);
+                new GramaticaMf().setVisible(true);
             }
         });
     }
@@ -234,10 +292,9 @@ public class GramaticaF extends javax.swing.JFrame {
     private javax.swing.JButton btnExaminar;
     private javax.swing.JButton btnIngresoF;
     private javax.swing.JButton btnIngresoM;
-    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField fileName;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel labelP;

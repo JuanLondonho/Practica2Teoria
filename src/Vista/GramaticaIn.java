@@ -19,6 +19,8 @@ public class GramaticaIn extends javax.swing.JFrame {
 
     ctrGramatica ctr= ctrGramatica.getCtr();
     String[][] gra;
+    boolean manual=false;
+    
 
 
     /**
@@ -27,14 +29,14 @@ public class GramaticaIn extends javax.swing.JFrame {
     public GramaticaIn() {
        //Se inicializan los componentes y se le aplican las propiedades necesarias.
        initComponents();
-       tblMatriz= ctr.crearTabla();//se crea el jtable en el cual el usario ingresa los datos del automata
+       tblMatriz=ctr.crearTabla();
        jScrollPane.setViewportView(tblMatriz);
        tblMatriz.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
        tblMatriz.getTableHeader().setPreferredSize(new java.awt.Dimension(0,0));
        tblMatriz.getColumnModel().getColumn(0).setPreferredWidth(150);
        tblMatriz.getColumnModel().getColumn(tblMatriz.getColumnCount()-1).setPreferredWidth(180);
        jScrollPane.enable(false);
-
+      
     }
 
     /**
@@ -47,7 +49,7 @@ public class GramaticaIn extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnIngreso = new javax.swing.JButton();
+        btnIngresoM = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jScrollPane = new javax.swing.JScrollPane();
         tblMatriz = new javax.swing.JTable();
@@ -60,10 +62,10 @@ public class GramaticaIn extends javax.swing.JFrame {
         jPanel1.setAutoscrolls(true);
         jPanel1.setEnabled(false);
 
-        btnIngreso.setText("Ingresar Gramatica");
-        btnIngreso.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresoM.setText("Ingresar Gramatica");
+        btnIngresoM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresoActionPerformed(evt);
+                btnIngresoMActionPerformed(evt);
             }
         });
 
@@ -90,12 +92,6 @@ public class GramaticaIn extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(labeldet, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,6 +105,12 @@ public class GramaticaIn extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnSalir)
                         .addGap(389, 389, 389))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(labeldet, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIngresoM, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,8 +123,8 @@ public class GramaticaIn extends javax.swing.JFrame {
                         .addComponent(labeldet, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(btnIngreso)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnIngresoM)))
+                .addGap(35, 35, 35)
                 .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir)
@@ -157,12 +159,20 @@ public class GramaticaIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoActionPerformed
+    private void btnIngresoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoMActionPerformed
         // TODO add your handling code here:
-            ctr.matrizGramatica();
-            jScrollPane.setViewportView(tblMatriz);
+        
+            if(manual){
+             ///ctr.crearMatriz(tblMatriz);
+             jScrollPane.setViewportView(tblMatriz);
+                System.out.println("holi ya vine");
+                
+            }else
+                System.out.println("HOLA MUNDIS");
+                
+            
 
-    }//GEN-LAST:event_btnIngresoActionPerformed
+    }//GEN-LAST:event_btnIngresoMActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
@@ -206,7 +216,7 @@ public class GramaticaIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngreso;
+    private javax.swing.JButton btnIngresoM;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

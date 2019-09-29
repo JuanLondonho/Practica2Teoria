@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class ctrArchivo {
     
-    public int tamañoArchivo(String ruta) throws FileNotFoundException, IOException{     
+    public int tamañoArchivo(String ruta) throws FileNotFoundException, IOException{
         FileReader fr = null;
         try {
 
@@ -25,44 +25,41 @@ public class ctrArchivo {
             fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
             int cont = 0;
-          
+
             while ((br.readLine()) != null) {
                 cont = cont + 1;
             }
+            System.out.println();
 
             return cont;
 
         } finally {
 
             fr.close();
-            
+
 
         }
-       
-        
+
+
     }
 
-    public String[][] procesarArchivo(String ruta) throws FileNotFoundException, IOException {
+    public String[][] procesarArchivo(int cont,String ruta) throws FileNotFoundException, IOException {
         String g[][];
         FileReader fr = null;
-       
+
         try {
 
             File archivo = new File(ruta);
             fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
-            int cont = 0;
+
             int i = 0;
             String linea;
-
-            while ((br.readLine()) != null) {
-                cont = cont + 1;
-            }
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             g = new String[cont][2];
-            
+
 
             while (((linea = br.readLine()) != null) && i < cont) {
                 int indice = linea.indexOf(">") +1;
@@ -77,10 +74,10 @@ public class ctrArchivo {
         } finally {
 
             fr.close();
-            
+
 
         }
-        
-        
+
+
     }
 }
