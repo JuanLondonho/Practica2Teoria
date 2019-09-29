@@ -19,7 +19,7 @@ public class GramaticaIn extends javax.swing.JFrame {
 
     ctrGramatica ctr= ctrGramatica.getCtr();
     String[][] gra;
-    
+
 
     /**
      * Creates new form Matriz
@@ -34,7 +34,7 @@ public class GramaticaIn extends javax.swing.JFrame {
        tblMatriz.getColumnModel().getColumn(0).setPreferredWidth(150);
        tblMatriz.getColumnModel().getColumn(tblMatriz.getColumnCount()-1).setPreferredWidth(180);
        jScrollPane.enable(false);
-      
+
     }
 
     /**
@@ -159,8 +159,9 @@ public class GramaticaIn extends javax.swing.JFrame {
 
     private void btnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoActionPerformed
         // TODO add your handling code here:
+            ctr.matrizGramatica();
             jScrollPane.setViewportView(tblMatriz);
-    
+
     }//GEN-LAST:event_btnIngresoActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
