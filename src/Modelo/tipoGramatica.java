@@ -70,7 +70,7 @@ public class tipoGramatica {
                     
                 }
                 else{
-                    if(contN > 1 || (gramatica[i][1].charAt(gramatica[i][1].length()-1) != '>' && gramatica[i][0].length() > 1)){
+                    if(contN > 1 || (gramatica[i][1].charAt(gramatica[i][1].length()-1) != '>' && gramatica[i][1].length() > 1)){
                         if(nula){
                             tipo = "Q";
                         }else{

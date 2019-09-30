@@ -98,8 +98,6 @@ public class ctrGramatica {
         }else{
             result.setText("<html>La gramatica era candidata a ser : "+t.tipo(gramatica) +"<br/> pero no lo es dado que su conjunto de selección no es disyunto</html>");
         }
-        
-
     }
 
 }
