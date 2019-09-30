@@ -158,7 +158,9 @@ public class GramaticaIn extends javax.swing.JFrame {
              ctr.matrizGramatica(tblMatriz);
 
             }else{
-                ctr.matrizGramatica(tblMatriz);}
+                ctr.matrizGramatica(tblMatriz);
+            }
+            
             ctr.tipoGramatica(labelResu);
 
     }//GEN-LAST:event_btnIngresoMActionPerformed
