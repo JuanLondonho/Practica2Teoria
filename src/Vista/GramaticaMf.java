@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.ctrArchivo;
 import Controlador.ctrGramatica;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,7 @@ public class GramaticaMf extends javax.swing.JFrame {
      */
     public GramaticaMf() {
         initComponents();
-        fileName.setVisible(false);
+        txtNumP.setVisible(false);
         btnExaminar.setVisible(false);
         btnIngresoM.setVisible(false);
         btnIngresoF.setVisible(false);
@@ -53,8 +54,9 @@ public class GramaticaMf extends javax.swing.JFrame {
         btnIngresoM = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        fileName = new javax.swing.JTextField();
+        txtNumP = new javax.swing.JTextField();
         labelP = new javax.swing.JLabel();
+        labelFileName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,9 +100,14 @@ public class GramaticaMf extends javax.swing.JFrame {
             }
         });
 
-        fileName.addActionListener(new java.awt.event.ActionListener() {
+        txtNumP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileNameActionPerformed(evt);
+                txtNumPActionPerformed(evt);
+            }
+        });
+        txtNumP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumPKeyTyped(evt);
             }
         });
 
@@ -111,58 +118,61 @@ public class GramaticaMf extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton2)
-                .addGap(79, 79, 79))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(236, 236, 236)
+                        .addGap(226, 226, 226)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(labelP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fileName, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
+                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(112, 112, 112)
+                        .addComponent(jRadioButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
                         .addComponent(btnExaminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
+                        .addComponent(labelFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(btnIngresoF, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(FileName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(labelP)))
+                        .addGap(2, 2, 2)
+                        .addComponent(txtNumP, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnIngresoM, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(71, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(FileName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 365, Short.MAX_VALUE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelP)
-                    .addComponent(fileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnExaminar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIngresoF, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnIngresoM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 89, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(FileName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 47, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(labelP))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNumP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIngresoM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,9 +183,9 @@ public class GramaticaMf extends javax.swing.JFrame {
          JFileChooser fileChooser=new JFileChooser();
         int opt=fileChooser.showOpenDialog(this);
         if(opt==JFileChooser.APPROVE_OPTION){
-            fileName.setText(fileChooser.getSelectedFile().getName());
+            labelFileName.setText(fileChooser.getSelectedFile().getName());
             path=fileChooser.getSelectedFile().getPath();
-
+            
         }
 
 
@@ -189,7 +199,7 @@ public class GramaticaMf extends javax.swing.JFrame {
             gra=new String[x][2];
             gra=ctrA.procesarArchivo(x,path);
 
-            if(!fileName.getText().equals("")){
+            if(!labelFileName.getText().equals("")){
             this.setVisible(false);
 
             ctr.entradasTablaF(x,gra);
@@ -205,9 +215,9 @@ public class GramaticaMf extends javax.swing.JFrame {
 
     private void btnIngresoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoMActionPerformed
         // TODO add your handling code here:
-        if(!fileName.getText().equals("")){
+        if(!txtNumP.getText().equals("")){
             this.setVisible(false);
-            int x=Integer.parseInt(fileName.getText());
+            int x=Integer.parseInt(txtNumP.getText());
             ctr.entradasTablaM(x);
             GramaticaIn gramatica = new GramaticaIn();
             gramatica.manual=true;
@@ -224,7 +234,8 @@ public class GramaticaMf extends javax.swing.JFrame {
         if(jRadioButton1.isSelected()){
         btnIngresoM.setVisible(false);
         labelP.setVisible(false);
-        fileName.setVisible(true);
+        txtNumP.setVisible(false);
+        labelFileName.setVisible(true);
         btnExaminar.setVisible(true);
         btnIngresoF.setVisible(true);
 
@@ -236,9 +247,10 @@ public class GramaticaMf extends javax.swing.JFrame {
         // TODO add your handling code here:
         //gramatica.manual=jRadioButton2.isSelected();
          if(jRadioButton2.isSelected()){
+         labelFileName.setVisible(false);
         btnIngresoM.setVisible(true);
         labelP.setVisible(true);
-        fileName.setVisible(true);
+        txtNumP.setVisible(true);
         btnExaminar.setVisible(false);
         btnIngresoF.setVisible(false);
 
@@ -247,9 +259,20 @@ public class GramaticaMf extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void fileNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNameActionPerformed
+    private void txtNumPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fileNameActionPerformed
+    }//GEN-LAST:event_txtNumPActionPerformed
+
+    private void txtNumPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumPKeyTyped
+        // TODO add your handling code here:
+                                                 
+        //Se valida que en los txt solo se puedan ingresar numeros.
+        char c =evt.getKeyChar();
+        if(!Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE){
+            evt.consume();
+        }
+    
+    }//GEN-LAST:event_txtNumPKeyTyped
 
     /**
      * @param args the command line arguments
@@ -292,10 +315,11 @@ public class GramaticaMf extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresoF;
     private javax.swing.JButton btnIngresoM;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField fileName;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JLabel labelFileName;
     private javax.swing.JLabel labelP;
+    private javax.swing.JTextField txtNumP;
     // End of variables declaration//GEN-END:variables
 }
