@@ -10,30 +10,85 @@ package Modelo;
  * @author carolina
  */
 public class tipoGramatica {
-
-    public void tipo(String[][] gramatica) {
+    
+    public tipoGramatica(){
         
-        int contT=0;
-        int contN=0;
-        int contNula=0;
+    }
+
+    public String tipo(String[][] gramatica) {
+        
+        String tipo = "Especial";
+        boolean terminar = false;
+        boolean nula = false;
       
 
-        for (int i = 0; i < gramatica.length; i++) {
-            if(!(gramatica[i][1].charAt(0)=='<')&&(gramatica[i][1].charAt(gramatica[i][1].length()-1)=='>')){
-                if(gramatica[i][1].charAt(0)=='*'){
-                    contNula=contNula+1;
-                    
-                }else
-                    if(!(gramatica[i][1].charAt(1)=='<')){
+        for(int i = 0; i < gramatica.length; i++){
+            int contT=0;
+            int contN=0;
+            for(int j = 0; j < gramatica[i][1].length(); j++){
+                switch(gramatica[i][1].charAt(j)){
+                    case '<': 
+                        for(int k = j+1; k < gramatica[i][1].length(); k++){
+                            switch(gramatica[i][1].charAt(k)){
+                                case '>':
+                                    contN++;
+                                    terminar = true;
+                                    j=k;
+                                    break;
+                                default: 
+                                    break;
+                            }
+                            if(terminar){
+                                terminar = false;
+                                break;
+                            }
+                        }
+                        break;
                         
+                    case '*':
+                        nula=true;
+                        break;
                         
+                    default:
+                        contT++;
+                        break;
+                }
+            }
+            if(gramatica[i][1].charAt(0) == '<'){
+                if(contT==0 && contN == 1){
+                    tipo = "Lineal por la derecha";
+                }else{
+                    tipo = "LL1";
+                    return tipo;
+                }
+            }else{
+                if(contN == 1 && contT > 1 && gramatica[i][1].charAt(gramatica[i][1].length()-1) == '>'){
+                    if(!tipo.equals("Lineal por la derecha") ){
+                        tipo = "S";
                     }
-            }else
-                System.out.println("ba");
-                //ll1
-
+                }else if(contN ==1 && contT ==1){
+                    
+                }
+                else{
+                    if(contN > 1 || (gramatica[i][1].charAt(gramatica[i][1].length()-1) != '>' && gramatica[i][0].length() > 1)){
+                        if(nula){
+                            tipo = "Q";
+                        }else{
+                           tipo = "S"; 
+                        }
+                    }else if(nula){
+                        if(tipo.equals("S")){
+                             tipo = "Q";
+                        }
+                    }else{
+                        tipo = "S";
+                    }
+                    
+                }
+            }
         }
-
+        System.out.println(tipo);
+        return tipo;
     }
     
 }

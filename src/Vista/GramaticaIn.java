@@ -35,7 +35,7 @@ public class GramaticaIn extends javax.swing.JFrame {
        tblMatriz.getColumnModel().getColumn(tblMatriz.getColumnCount()-1).setPreferredWidth(180);
        jScrollPane.enable(false);
        labelT.setVisible(false);
-      
+
     }
 
     /**
@@ -166,10 +166,15 @@ public class GramaticaIn extends javax.swing.JFrame {
              ctr.crearMatriz(tblMatriz);
              labelT.setVisible(true);
              ctr.matrizGramatica(tblMatriz);
-   
+
             }else{
+
                 labelT.setVisible(true);
                 ctr.matrizGramatica(tblMatriz);}
+
+                ctr.matrizGramatica(tblMatriz);
+            
+
             ctr.tipoGramatica(labelResu);
 
     }//GEN-LAST:event_btnIngresoMActionPerformed

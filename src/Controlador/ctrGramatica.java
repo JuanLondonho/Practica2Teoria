@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 public class ctrGramatica {
 
     private static ctrGramatica ctr;
+    private static tipoGramatica t = new tipoGramatica();
     int numProducciones;
     String[][] gramatica;
     JTable tblGramatica;
@@ -83,17 +84,22 @@ public class ctrGramatica {
         for (int i = 0; i < seleccion.size(); i++) {
             seleccionG.setValueAt(i + 1, i, 0);
             for (int j = 1; j < seleccion.get(i).size(); j++) {
-                selec = selec.concat(seleccion.get(i).get(j));              
+                selec = selec.concat(seleccion.get(i).get(j));
             }
             seleccionG.setValueAt(selec, i, 1);
             selec = "";
         }
 
     }
-    
+
     public void tipoGramatica(JLabel result){
-        result.setText("ll1");
-    
+        if(s.esDisyunto()){
+            result.setText("La gramatica es tipo: "+t.tipo(gramatica));
+        }else{
+            result.setText("<html>La gramatica era candidata a ser : "+t.tipo(gramatica) +"<br/> pero no lo es dado que su conjunto de selección no es disyunto</html>");
+        }
+        
+
     }
-     
+
 }

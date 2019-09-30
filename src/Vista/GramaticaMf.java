@@ -17,12 +17,12 @@ import javax.swing.JFileChooser;
  * @author carolina
  */
 public class GramaticaMf extends javax.swing.JFrame {
-    
+
     ctrArchivo ctrA= new ctrArchivo();
     ctrGramatica ctr= ctrGramatica.getCtr();
     String path;
     String[][] gra;
-    
+
 
     /**
      * Creates new form GramaticaMf
@@ -169,7 +169,7 @@ public class GramaticaMf extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExaminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExaminarActionPerformed
-        
+
          JFileChooser fileChooser=new JFileChooser();
         int opt=fileChooser.showOpenDialog(this);
         if(opt==JFileChooser.APPROVE_OPTION){
@@ -178,7 +178,7 @@ public class GramaticaMf extends javax.swing.JFrame {
 
         }
 
-        
+
 
     }//GEN-LAST:event_btnExaminarActionPerformed
 
@@ -188,10 +188,10 @@ public class GramaticaMf extends javax.swing.JFrame {
             int x=ctrA.tamañoArchivo(path);
             gra=new String[x][2];
             gra=ctrA.procesarArchivo(x,path);
-           
+
             if(!fileName.getText().equals("")){
             this.setVisible(false);
-           
+
             ctr.entradasTablaF(x,gra);
             GramaticaIn gramatica = new GramaticaIn();
             gramatica.setVisible(true);
@@ -199,7 +199,7 @@ public class GramaticaMf extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(GramaticaMf.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
 
     }//GEN-LAST:event_btnIngresoFActionPerformed
 
@@ -212,24 +212,24 @@ public class GramaticaMf extends javax.swing.JFrame {
             GramaticaIn gramatica = new GramaticaIn();
             gramatica.manual=true;
             gramatica.setVisible(true);
-            
+
         }
-        
-        
+
+
     }//GEN-LAST:event_btnIngresoMActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
             // TODO add your handling code here:
-            
+
         if(jRadioButton1.isSelected()){
         btnIngresoM.setVisible(false);
         labelP.setVisible(false);
         fileName.setVisible(true);
         btnExaminar.setVisible(true);
         btnIngresoF.setVisible(true);
-       
+
        }
-       
+
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -241,9 +241,9 @@ public class GramaticaMf extends javax.swing.JFrame {
         fileName.setVisible(true);
         btnExaminar.setVisible(false);
         btnIngresoF.setVisible(false);
- 
+
        }
-        
+
 
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
@@ -258,7 +258,7 @@ public class GramaticaMf extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
