@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -196,16 +197,22 @@ public class GramaticaMf extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             int x=ctrA.tamañoArchivo(path);
-            gra=new String[x][2];
-            gra=ctrA.procesarArchivo(x,path);
+            System.out.println(x);
+            if(x>0){
+                gra=new String[x][2];
+                gra=ctrA.procesarArchivo(x,path);
 
-            if(!labelFileName.getText().equals("")){
-            this.setVisible(false);
+                if(!labelFileName.getText().equals("")){
+                    this.setVisible(false);
+                }
 
-            ctr.entradasTablaF(x,gra);
-            GramaticaIn gramatica = new GramaticaIn();
-            gramatica.setVisible(true);
-        }
+                ctr.entradasTablaF(x,gra);
+                GramaticaIn gramatica = new GramaticaIn();
+                gramatica.setVisible(true);
+            }else{
+                System.out.println(x);
+                JOptionPane.showMessageDialog(null, "Archivo vacio");
+            }
         } catch (IOException ex) {
             Logger.getLogger(GramaticaMf.class.getName()).log(Level.SEVERE, null, ex);
         }

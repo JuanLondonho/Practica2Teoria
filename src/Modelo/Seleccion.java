@@ -316,7 +316,6 @@ public class Seleccion {
                                                                     }
                                                                     if(primeros){
                                                                         primeros = false;
-                                                                        System.out.println(primerosDe);
                                                                         if(!nAnulables.contains(primerosDe)){
                                                                             terminal = true;
                                                                         }else{
@@ -395,9 +394,6 @@ public class Seleccion {
                 }
             }
         }
-
-
-        System.out.println("");
     }
     
     private void seleccion(String [][] matriz){
