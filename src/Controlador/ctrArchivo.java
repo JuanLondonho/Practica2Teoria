@@ -29,6 +29,7 @@ public class ctrArchivo {
             while ((br.readLine()) != null) {
                 cont = cont + 1;
             }
+            System.out.println();
 
             return cont;
 
@@ -42,7 +43,7 @@ public class ctrArchivo {
         
     }
 
-    public String[][] procesarArchivo(String ruta) throws FileNotFoundException, IOException {
+    public String[][] procesarArchivo(int cont,String ruta) throws FileNotFoundException, IOException {
         String g[][];
         FileReader fr = null;
        
@@ -51,21 +52,17 @@ public class ctrArchivo {
             File archivo = new File(ruta);
             fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
-            int cont = 0;
+            
             int i = 0;
             String linea;
-
-            while ((br.readLine()) != null) {
-                cont = cont + 1;
-            }
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
             g = new String[cont][2];
             
 
-            while (((linea = br.readLine()) != null) && i < 3) {
-
+            while (((linea = br.readLine()) != null) && i < cont) {
+                
                 g[i][0] = linea.substring(0, 3);
                 g[i][1] = linea.substring(3, linea.length());
 

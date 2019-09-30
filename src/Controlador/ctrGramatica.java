@@ -42,17 +42,47 @@ public class ctrGramatica {
         return ctr;
     }
 
-     public void entradasTabla(int x,String [][] grama) {
+     public void entradasTablaF(int x,String [][] grama) {
         numProducciones= x;
         gramatica = new String[x][2];
         gramatica=grama;
+        for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
+            for (int j = 0; j < 2; j++) {
+
+                System.out.println("BUU:"+gramatica[i][j]);
+
+            }
+        }
+       
     }
-
+    
+     public void entradasTablaM(int x) {
+       numProducciones= x;
+       gramatica = new String[x][2];
+         System.out.println("holi");
+        
+       
+    }
+   
      public JTable crearTabla() {
-
+         
         tblGramatica = new JTable(numProducciones, 2);//se crea una instacia de la clase JTable
         tblGramatica.getTableHeader().setVisible(false);
+        
+        if(gramatica[0][0]==null){
+            return tblGramatica;
+//            for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
+//                for (int j = 0; j < 2; j++) {
+//
+//                gramatica[i][j]=(String) gramaticaIn.getValueAt(i, j);
+//
+//            }
 
+        }
+            
+        else{
+            
+     
         for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
             for (int j = 0; j < 2; j++) {
 
@@ -60,9 +90,14 @@ public class ctrGramatica {
 
             }
         }
-
         return tblGramatica;
+        }
+
+        
     }
+     
+    
+     
 
     public void matrizGramatica() {
         s.construir(gramatica);
