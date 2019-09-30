@@ -10,24 +10,24 @@ package Modelo;
  * @author carolina
  */
 public class tipoGramatica {
-    
+
     public tipoGramatica(){
-        
+
     }
 
     public String tipo(String[][] gramatica) {
-        
+
         String tipo = "Especial";
         boolean terminar = false;
         boolean nula = false;
-      
+
 
         for(int i = 0; i < gramatica.length; i++){
             int contT=0;
             int contN=0;
             for(int j = 0; j < gramatica[i][1].length(); j++){
                 switch(gramatica[i][1].charAt(j)){
-                    case '<': 
+                    case '<':
                         for(int k = j+1; k < gramatica[i][1].length(); k++){
                             switch(gramatica[i][1].charAt(k)){
                                 case '>':
@@ -35,7 +35,7 @@ public class tipoGramatica {
                                     terminar = true;
                                     j=k;
                                     break;
-                                default: 
+                                default:
                                     break;
                             }
                             if(terminar){
@@ -44,11 +44,11 @@ public class tipoGramatica {
                             }
                         }
                         break;
-                        
+
                     case '*':
                         nula=true;
                         break;
-                        
+
                     default:
                         contT++;
                         break;
@@ -67,14 +67,14 @@ public class tipoGramatica {
                         tipo = "S";
                     }
                 }else if(contN ==1 && contT ==1){
-                    
+
                 }
                 else{
-                    if(contN > 1 || (gramatica[i][1].charAt(gramatica[i][1].length()-1) != '>' && gramatica[i][0].length() > 1)){
+                    if(contN > 1 || (gramatica[i][1].charAt(gramatica[i][1].length()-1) != '>' && gramatica[i][1].length() > 1)){
                         if(nula){
                             tipo = "Q";
                         }else{
-                           tipo = "S"; 
+                           tipo = "S";
                         }
                     }else if(nula){
                         if(tipo.equals("S")){
@@ -83,14 +83,12 @@ public class tipoGramatica {
                     }else{
                         tipo = "S";
                     }
-                    
+
                 }
             }
         }
         System.out.println(tipo);
         return tipo;
     }
-    
-}
-    
 
+}
