@@ -8,6 +8,7 @@ package Controlador;
 import javax.swing.JTable;
 import Modelo.*;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 public class ctrGramatica {
 
@@ -89,5 +90,10 @@ public class ctrGramatica {
         }
 
     }
-
+    
+    public void tipoGramatica(JLabel result){
+        result.setText("ll1");
+    
+    }
+     
 }
