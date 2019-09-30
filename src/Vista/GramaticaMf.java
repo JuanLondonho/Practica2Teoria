@@ -197,7 +197,6 @@ public class GramaticaMf extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             int x=ctrA.tamañoArchivo(path);
-            System.out.println(x);
             if(x>0){
                 gra=new String[x][2];
                 gra=ctrA.procesarArchivo(x,path);
@@ -210,7 +209,6 @@ public class GramaticaMf extends javax.swing.JFrame {
                 GramaticaIn gramatica = new GramaticaIn();
                 gramatica.setVisible(true);
             }else{
-                System.out.println(x);
                 JOptionPane.showMessageDialog(null, "Archivo vacio");
             }
         } catch (IOException ex) {
