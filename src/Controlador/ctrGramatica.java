@@ -80,9 +80,11 @@ public class ctrGramatica {
     public void matrizGramatica(JTable seleccionG) {
         seleccion = s.construir(gramatica);
         String selec = "";
+       
+      
 
         for (int i = 0; i < seleccion.size(); i++) {
-            seleccionG.setValueAt(i + 1, i, 0);
+            seleccionG.setValueAt((i+1)+"."+gramatica[i][0], i, 0);
             for (int j = 1; j < seleccion.get(i).size(); j++) {
                 selec = selec.concat(seleccion.get(i).get(j));
             }
