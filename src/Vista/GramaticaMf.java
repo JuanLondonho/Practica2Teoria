@@ -22,7 +22,7 @@ public class GramaticaMf extends javax.swing.JFrame {
     ctrGramatica ctr= ctrGramatica.getCtr();
     String path;
     String[][] gra;
-    //GramaticaIn gramatica = new GramaticaIn();
+    
 
     /**
      * Creates new form GramaticaMf
@@ -197,7 +197,7 @@ public class GramaticaMf extends javax.swing.JFrame {
             gramatica.setVisible(true);
         }
         } catch (IOException ex) {
-            Logger.getLogger(GramaticaF.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GramaticaMf.class.getName()).log(Level.SEVERE, null, ex);
         }
     
 
@@ -210,8 +210,8 @@ public class GramaticaMf extends javax.swing.JFrame {
             int x=Integer.parseInt(fileName.getText());
             ctr.entradasTablaM(x);
             GramaticaIn gramatica = new GramaticaIn();
+            gramatica.manual=true;
             gramatica.setVisible(true);
-            //tblMatriz= ctr.tableGramatica();
             
         }
         
@@ -241,8 +241,7 @@ public class GramaticaMf extends javax.swing.JFrame {
         fileName.setVisible(true);
         btnExaminar.setVisible(false);
         btnIngresoF.setVisible(false);
-        
-       
+ 
        }
         
 

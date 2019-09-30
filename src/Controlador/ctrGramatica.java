@@ -7,30 +7,19 @@ package Controlador;
 
 import javax.swing.JTable;
 import Modelo.*;
+import java.util.ArrayList;
 
-/**
- *
- * @author juanclg
- */
 public class ctrGramatica {
+
     private static ctrGramatica ctr;
     int numProducciones;
     String[][] gramatica;
     JTable tblGramatica;
     Seleccion s = new Seleccion();
-    ctrArchivo ctrA=new ctrArchivo();
+    ctrArchivo ctrA = new ctrArchivo();
+    ArrayList<ArrayList<String>> seleccion;
 
-//    public String[][] gramatica;
-//
-//    public ctrGramatica(){
-//        this.gramatica = gramatica;
-//    }
-//
-//    public void gramatica(String[][] gramatica){
-//        this.gramatica = gramatica;
-//
-//    }
-      private synchronized static void crearCtr() {
+    private synchronized static void crearCtr() {
         if (ctr == null) {
             ctr = new ctrGramatica();
         }
@@ -42,65 +31,63 @@ public class ctrGramatica {
         return ctr;
     }
 
-     public void entradasTabla(int x, String [][] grama) {
-        numProducciones= x;
+    public void entradasTablaF(int x, String[][] grama) {
+        numProducciones = x;
         gramatica = new String[x][2];
-        gramatica=grama;
-        for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
-            for (int j = 0; j < 2; j++) {
-
-                System.out.println("BUU:"+gramatica[i][j]);
-
-            }
-        }
-
+        gramatica = grama;
     }
 
-     public void entradasTablaM(int x) {
-       numProducciones= x;
-       gramatica = new String[x][2];
-         System.out.println("holi");
-
-
+    public void entradasTablaM(int x) {
+        numProducciones = x;
+        gramatica = new String[x][2];
     }
 
-     public JTable crearTabla() {
+    public JTable crearTabla() {
 
         tblGramatica = new JTable(numProducciones, 2);//se crea una instacia de la clase JTable
         tblGramatica.getTableHeader().setVisible(false);
 
-        if(gramatica[0][0]==null){
+        if (gramatica[0][0] == null) {
             return tblGramatica;
-//            for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
-//                for (int j = 0; j < 2; j++) {
-//
-//                gramatica[i][j]=(String) gramaticaIn.getValueAt(i, j);
-//
-//            }
 
-        }
+        } else {
 
-        else{
+            for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
+                for (int j = 0; j < 2; j++) {
 
+                    tblGramatica.setValueAt(gramatica[i][j], i, j);
 
-        for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
-            for (int j = 0; j < 2; j++) {
-
-                tblGramatica.setValueAt(gramatica[i][j], i, j);
-
+                }
             }
+            return tblGramatica;
         }
-        return tblGramatica;
-        }
-
 
     }
 
+    public void crearMatriz(JTable tblAutomata) {
+        for (int i = 0; i < numProducciones; i++) {//Recorre el JTable inicial
+            for (int j = 0; j < 2; j++) {
+                gramatica[i][j] = (String) tblAutomata.getValueAt(i, j);//Llenar la matriz con los datos ingresados en el jTable
 
+            }
 
+        }
 
-    public void matrizGramatica() {
-        s.construir(gramatica);
+    }
+
+    public void matrizGramatica(JTable seleccionG) {
+        seleccion = s.construir(gramatica);
+        String selec = "";
+
+        for (int i = 0; i < seleccion.size(); i++) {
+            seleccionG.setValueAt(i + 1, i, 0);
+            for (int j = 1; j < seleccion.get(i).size(); j++) {
+                selec = selec.concat(seleccion.get(i).get(j));              
+            }
+            seleccionG.setValueAt(selec, i, 1);
+            selec = "";
+        }
+
     }
 
 }

@@ -8,10 +8,7 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- *
- * @author juanclg
- */
+
 public class Seleccion {
     ArrayList<String> nAnulables;
     ArrayList<String> pAnulables;
